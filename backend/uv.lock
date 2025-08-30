@@ -123,10 +123,14 @@ version = "0.1.0"
 source = { editable = "ai_librarian_monorepo/ai_librarian_frontend" }
 dependencies = [
     { name = "chainlit" },
+    { name = "httpx" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "chainlit", specifier = ">=2.7.2" }]
+requires-dist = [
+    { name = "chainlit", specifier = ">=2.7.2" },
+    { name = "httpx", specifier = ">=0.28.1" },
+]
 
 [[package]]
 name = "aiofiles"
