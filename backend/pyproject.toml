@@ -7,6 +7,7 @@ readme = "README.md"
 dependencies = [
     "ai-librarian-core",
     "ai-librarian-apis",
+    "ai-librarian-frontend",
 ]
 
 [tool.uv.workspace]
@@ -15,6 +16,7 @@ members = ["ai_librarian_monorepo/*"]
 [tool.uv.sources]
 ai-librarian-core = { workspace = true }
 ai-librarian-apis = { workspace = true }
+ai-librarian-frontend = { workspace = true }
 
 [dependency-groups]
 dev = [
