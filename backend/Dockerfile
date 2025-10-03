@@ -6,12 +6,15 @@ ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
 WORKDIR /app
 
-COPY pyproject.toml ./
-COPY uv.lock ./
-COPY ai_librarian_monorepo/ ./ai_librarian_monorepo/
+COPY pyproject.toml uv.lock ./
 
-# RUN --mount=type=cache,target=/root/.cache/uv \
-#     uv sync --locked --no-dev
+RUN mkdir -p ai_librarian_monorepo/ai_librarian_apis && \
+    mkdir -p ai_librarian_monorepo/ai_librarian_core
+
+COPY ai_librarian_monorepo/ai_librarian_apis/pyproject.toml ./ai_librarian_monorepo/ai_librarian_apis/
+COPY ai_librarian_monorepo/ai_librarian_core/pyproject.toml ./ai_librarian_monorepo/ai_librarian_core/
+
+COPY . .
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-dev
