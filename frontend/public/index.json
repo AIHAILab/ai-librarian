@@ -1,0 +1,9 @@
+[
+  { "name": "Haru",   "url": "/Haru/Haru.model3.json",   "tags": ["官方","男"] },
+  { "name": "Hiyori", "url": "/Hiyori/Hiyori.model3.json","tags": ["官方","女"] },
+  { "name": "Mao",    "url": "/Mao/Mao.model3.json" },
+  { "name": "Mark",   "url": "/Mark/Mark.model3.json" },
+  { "name": "Natori", "url": "/Natori/Natori.model3.json" },
+  { "name": "Rice",   "url": "/Rice/Rice.model3.json" },
+  { "name": "Wanko",  "url": "/Wanko/Wanko.model3.json" }
+]

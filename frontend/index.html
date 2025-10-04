@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="">
+<!doctype html>
+<html lang="zh-TW" class="dark">
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Librarian</title>
+
+    <!-- ✅ Cubism -->
+    <script src="/live2dcubismcore.min.js"></script> 
+
+
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-    <script src="live2dcubismcore.min.js"></script>
-
+    <div id="root"></div>
+    <!-- 最後才載你的 React 進入點 -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
+
+
