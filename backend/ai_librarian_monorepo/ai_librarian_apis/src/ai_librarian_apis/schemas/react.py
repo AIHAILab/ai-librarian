@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 
+from ai_librarian_core.agents.react.state import Emotion
 from ai_librarian_core.models.llm_config import LLMConfig, Model
 from ai_librarian_core.models.used_tool import UsedTool
 from ai_librarian_core.utils.uuid import get_thread_id
@@ -199,4 +200,12 @@ class AgentResponse(BaseModel):
                 UsedTool(name="get_humidity", output="The humidity in Tokyo is 50%"),
             ]
         ],
+    )
+
+
+class AgentEmotionResponse(AgentResponse):
+    emotion: Emotion = Field(
+        ...,
+        description="The emotion of the conversation.",
+        examples=[Emotion.HAPPY],
     )
