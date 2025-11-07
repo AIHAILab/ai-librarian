@@ -1,6 +1,7 @@
 from enum import StrEnum, auto
 from typing import Any
 
+from ai_librarian_core.agents.react.state import Emotion
 from ai_librarian_core.models.used_tool import UsedTool
 from pydantic import BaseModel, model_serializer
 
@@ -11,6 +12,7 @@ class EventPayload(StrEnum):
     LLM_START = auto()
     LLM_DELTA = auto()
     LLM_END = auto()
+    EMOTION = auto()
 
 
 class BaseDataPayload(BaseModel):
@@ -38,6 +40,18 @@ class LLMChunkPayload(BaseDataPayload):
         ordered_data = {}
         ordered_data["thread_id"] = self.thread_id
         ordered_data["message_chunk"] = self.message_chunk
+        ordered_data["llm_config"] = self.llm_config
+        return ordered_data
+
+
+class EmotionPayload(BaseDataPayload):
+    emotion: Emotion
+
+    @model_serializer(when_used="json")
+    def serialize_model(self) -> dict[str, Any]:
+        ordered_data = {}
+        ordered_data["thread_id"] = self.thread_id
+        ordered_data["emotion"] = self.emotion
         ordered_data["llm_config"] = self.llm_config
         return ordered_data
 
