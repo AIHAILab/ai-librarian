@@ -1,6 +1,6 @@
 from collections.abc import AsyncIterator
 from dataclasses import dataclass
-from typing import Literal
+from typing import Any, Literal
 
 from ai_librarian_core.agents.react.base import BaseReactAgent, MissingAIMessageError, ReactAgentError
 from ai_librarian_core.agents.react.state import MessagesState
@@ -22,8 +22,8 @@ class AsyncReactAgent(BaseReactAgent):
     def workflow(self) -> CompiledStateGraph:
         return self._init_workflow()
 
-    async def _clear_used_tools(self, state: MessagesState) -> dict[str, list[UsedTool]]:
-        return {"used_tools": []}
+    async def _clear_used_tools(self, state: MessagesState) -> dict[str, Any]:
+        return {"used_tools": [], "tool_cursor": len(state.messages)}
 
     async def _invoke_llm(self, state: MessagesState) -> dict[str, list[BaseMessage]]:
         llm_config = state.llm_config
@@ -46,14 +46,17 @@ class AsyncReactAgent(BaseReactAgent):
             return "tools"
         return "__end__"
 
-    async def _catch_tool_massage(self, state: MessagesState) -> dict[str, list[UsedTool]]:
-        messages = state.messages
-        used_tools = [
-            UsedTool(name=msg.name, output=msg.content) for msg in reversed(messages) if isinstance(msg, ToolMessage)
-        ]
-        if used_tools:
-            used_tools.reverse()
-            return {"used_tools": used_tools}
+    async def _catch_tool_massage(self, state: MessagesState) -> dict[str, Any]:
+        start_index = state.tool_cursor
+        new_tools: list[UsedTool] = []
+        for message in state.messages[start_index:]:
+            if isinstance(message, ToolMessage):
+                new_tools.append(UsedTool(name=message.name, output=message.content))
+
+        updates: dict[str, Any] = {"tool_cursor": len(state.messages)}
+        if new_tools:
+            updates["used_tools"] = [*state.used_tools, *new_tools]
+        return updates
 
     def _init_workflow(self) -> CompiledStateGraph:
         workflow = StateGraph(state_schema=self.state_schema)

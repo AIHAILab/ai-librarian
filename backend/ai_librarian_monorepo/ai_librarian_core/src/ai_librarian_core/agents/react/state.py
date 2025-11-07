@@ -12,6 +12,7 @@ class MessagesState(BaseModel):
     messages: Annotated[list[BaseMessage], add_messages] = Field(default_factory=list)
     llm_config: LLMConfig = Field(default_factory=LLMConfig)
     used_tools: list[UsedTool] = Field(default_factory=list)
+    tool_cursor: int = Field(default=0)
 
 
 class Emotion(StrEnum):
