@@ -5,9 +5,18 @@
 
 /* 自訂動畫 */
 @keyframes float {
-  0% { transform: translateY(0) scale(1); opacity: 0.6; }
-  50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
 }
 
 .animate-float {
@@ -20,24 +29,49 @@
 /* === 全站基底（黑色主題）=== */
 @layer base {
   /* body：整站底色、字色、抗鋸齒 */
-  body { @apply bg-neutral-950 text-neutral-200 antialiased; }
+  body {
+    @apply bg-neutral-950 text-neutral-200 antialiased;
+  }
 
   /* 文字選取時的藍色光暈 */
-  ::selection { @apply bg-sky-500/30; }
+  ::selection {
+    @apply bg-sky-500/30;
+  }
 }
 
 /* === 可重用元件類（之後寫畫面直接套 class 即可）=== */
 @layer components {
   /* 霧面玻璃卡片：黑底、細邊、圓角、柔陰影 */
-  .card { @apply bg-neutral-900/60 border border-neutral-800 rounded-2xl shadow-xl shadow-black/40; }
+  .card {
+    @apply bg-neutral-900/60 border border-neutral-800 rounded-2xl shadow-xl shadow-black/40;
+  }
 
   /* 小膠囊標籤（chip） */
-  .chip { @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/60; }
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-800 bg-neutral-900/60;
+  }
 
   /* 主要按鈕（藍色霓虹感） */
-  .btn-primary { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-sky-600/40 bg-sky-500/10 hover:bg-sky-500/20 text-sky-300; }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-sky-600/40 bg-sky-500/10 hover:bg-sky-500/20 text-sky-300;
+  }
 
   /* 次要幽靈按鈕（深色 hover） */
-  .btn-ghost { @apply inline-flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-neutral-800/60; }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-neutral-800/60;
+  }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out;
+}

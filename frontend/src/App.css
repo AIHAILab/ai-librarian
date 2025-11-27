@@ -1,3 +1,12 @@
+/* === 全站字體大小控制（你需要的 A+ / A- 機制）=== */
+:root {
+  --font-size-base: 16px; /* 初始字體大小 */
+}
+
+body {
+  font-size: var(--font-size-base); /* 全站引用字體大小 */
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
