@@ -12,3 +12,24 @@ services:
     volumes:
       - ./backend/ai_librarian_monorepo/ai_librarian_apis/.env:/app/ai_librarian_monorepo/ai_librarian_apis/.env
     restart: unless-stopped
+  frontend:
+      image: ai-librarian-frontend-dev:latest
+      container_name: ai-librarian-frontend
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile
+      ports:
+        - 3000:5173
+      volumes:
+        - ./frontend:/app
+        - /app/node_modules
+      restart: unless-stopped
+      networks:
+        - ai_librarian_net
+      
+      environment:
+        - VITE_API_URL=http://backend:8000
+
+networks:
+  ai_librarian_net:
+    driver: bridge
