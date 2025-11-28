@@ -31,7 +31,7 @@ export default function Live2DArea({
 
       // 等使用者停止 resize 200ms 再重建 Live2DPanel
       timer = setTimeout(() => {
-        console.log("🔄 [resize] rebuilding Live2DPanel");
+        // console.log("🔄 [resize] rebuilding Live2DPanel");
         setResizeKey((k) => k + 1);
       }, 200);
     };
