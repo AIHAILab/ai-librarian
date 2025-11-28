@@ -67,7 +67,7 @@ export default function Navbar() {
         </Link>
 
         {/* 右側：Bot + 系統狀態（含 Popover） */}
-        <div className="hidden md:flex">
+        {/* <div className="hidden md:flex">
           <Popover
             content={
               <div>
@@ -90,10 +90,10 @@ export default function Navbar() {
                 }
               `}
             >
-              {/* Bot icon */}
+              
               <Bot className="w-6 h-6 text-sky-300" />
 
-              {/* 狀態文字 */}
+              
               <span
                 className={
                   healthStatus === "ok"
@@ -107,7 +107,7 @@ export default function Navbar() {
               </span>
             </Link>
           </Popover>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
