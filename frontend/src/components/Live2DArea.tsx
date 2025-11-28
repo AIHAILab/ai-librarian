@@ -21,6 +21,24 @@ export default function Live2DArea({
   emotionToken,
 }: Props) {
   const [models, setModels] = useState<Live2DInfo[]>([]);
+  const [resizeKey, setResizeKey] = useState(0);
+
+  useEffect(() => {
+    let timer: any = null;
+
+    const handle = () => {
+      if (timer) clearTimeout(timer);
+
+      // 等使用者停止 resize 200ms 再重建 Live2DPanel
+      timer = setTimeout(() => {
+        // console.log("🔄 [resize] rebuilding Live2DPanel");
+        setResizeKey((k) => k + 1);
+      }, 200);
+    };
+
+    window.addEventListener("resize", handle);
+    return () => window.removeEventListener("resize", handle);
+  }, []);
 
   // 讀取模型清單
   useEffect(() => {
@@ -59,7 +77,7 @@ export default function Live2DArea({
       <div className="absolute inset-0 rounded-xl border border-dashed border-sky-700/40 bg-neutral-900/40 z-0">
         {modelUrl && (
           <Live2DPanel
-            key={modelUrl}
+            key={`${modelUrl}-${resizeKey}`}
             modelUrl={modelUrl}
             className="w-full h-full"
             emotionToken={emotionToken ?? undefined} // SSE 會直接控制
