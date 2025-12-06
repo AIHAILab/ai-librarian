@@ -1,6 +1,6 @@
 // src/components/Live2DPanel.tsx
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as PIXI from "pixi.js";
 
 // Live2DPanel 輸入參數
@@ -154,12 +154,12 @@ export default function Live2DPanel({
     if (!model || !emotionToken) return;
 
     const emotionMap: Record<string, { group: string; index: number }> = {
-      happy: { group: "TapBody", index: 0 },
+      happy: { group: "TapBody", index: 6 },
       sad: { group: "TapBody", index: 3 },
       angry: { group: "TapBody", index: 1 },
       anger: { group: "TapBody", index: 2 },
       surprised: { group: "TapBody", index: 4 },
-      neutral: { group: "Idle", index: 0 },
+      neutral: { group: "TapBody", index: 5 },
     };
 
     const mapping = emotionMap[emotionToken];

@@ -20,7 +20,7 @@ export default function Live2DArea({
   setModelUrl,
   emotionToken,
 }: Props) {
-  const [models, setModels] = useState<Live2DInfo[]>([]);
+  const [_models, _setModels] = useState<Live2DInfo[]>([]);
   const [resizeKey, setResizeKey] = useState(0);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Live2DArea({
           return { ...m, url: good };
         });
 
-        setModels(normalized);
+        _setModels(normalized);
 
         // 預設載入第一個角色
         const first = normalized.find((m) => m.url.endsWith(".model3.json"));
@@ -67,7 +67,7 @@ export default function Live2DArea({
       })
       .catch((err) => {
         console.error("Load Live2D manifest failed:", err);
-        setModels([]);
+        _setModels([]);
       });
   }, [setModelUrl]);
 

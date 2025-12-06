@@ -9,6 +9,7 @@ export type ToolArg = {
 export type Tool = {
   name: string;
   description: string; // 英文原文（保留備用）
+  args_schema?: ToolArg[];
 };
 
 export const mcpTools: Tool[] = [
