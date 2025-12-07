@@ -63,12 +63,6 @@ const availableModels = [
 const defaultModel = "openai:gpt-4o-mini";
 
 // ============================================================
-//  🧩 Live2D 模型資訊型別
-// ============================================================
-
-type Live2DInfo = { name: string; url: string; tags?: string[] };
-
-// ============================================================
 //  🏛️ 主元件：Librarian
 // ============================================================
 
@@ -76,11 +70,8 @@ export default function Librarian() {
   // ============================================================
   //  1️⃣ Live2D 模型狀態（角色 URL / 情緒）
   // ============================================================
-  const [models, setModels] = useState<Live2DInfo[]>([]);
   const [modelUrl, setModelUrl] = useState<string>("");
-  const [emotionToken, setEmotionToken] = useState<
-    "happy" | "sad" | "angry" | null
-  >(null);
+  const [emotionToken, setEmotionToken] = useState<string | null>(null);
 
   // ============================================================
   //  2️⃣ MCP 工具 UI 狀態（哪個工具被選中）
